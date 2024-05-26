@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 // Use the authentication routes
+//helo
 app.use('/auth', authRouter);
 // Use the API routes
 app.use('/api', apiRouter);
