@@ -8,4 +8,5 @@ const apiRouter = express.Router();
 //     res.json({ data: 'some data' });
 // });
 
+//HI SHIMON ARAI
 module.exports = apiRouter;
