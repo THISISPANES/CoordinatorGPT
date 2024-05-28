@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const authRouter = require('./Assets/Scripts/auth');
-const apiRouter = require('./Assets/Scripts/api');
+const authRouter = require('./auth');
+const apiRouter = require('./api');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,13 +36,14 @@ app.use('/api', apiRouter);
 // Serve static files
 app.use(express.static(__dirname));
 
+// Serve index.html at the root
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-// Protect the restricted route
+// Serve page2.html at /page2
 app.get('/page2', (req, res) => {
-    res.sendFile(path.join(__dirname, 'page2.html'));
+    res.sendFile(path.join(__dirname, '../page2.html'));
 });
 
 // Start the server
