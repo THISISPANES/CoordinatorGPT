@@ -1,97 +1,86 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CoordinatorGPT Login</title>
-    <link rel="stylesheet" href="Assets/styles/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-    />
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta
-      name="google-signin-client_id"
-      content="632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com"
-    />
-  </head>
-  <body>
-    <div class="auth">
-      <div class="rectangle-parent">
-        <div class="frame-child"></div>
-        <b class="coordinatorgpt">CoordinatorGPT</b>
-      </div>
-      <section class="auth-inner">
-        <div class="frame-parent">
-          <div class="frame-wrapper">
-            <div class="the-perfect-to-do-list-for-all-parent">
-              <div class="the-perfect-to-do">
-                The perfect to-do list for all PUSD students, combining Google
-                Classroom and Synergy.
-              </div>
-              <div class="frame-container">
-                <div class="frame-group">
-                  <div class="login-with-google-wrapper">
-                    <h3 class="login-with-google">Login with Google</h3>
-                  </div>
-                  <div class="g-signin2" data-width="400" data-height="40" data-longtitle="true" data-onsuccess="onSignIn"></div>
-                  <div class="by-clicking-continue-container">
-                    <span>By clicking continue, you agree to our </span>
-                    <a
-                      class="terms-of-service"
-                      href="https://docs.google.com/document/d/1xcFk0ZiTVxYaO8fUTpK7SmrZ4GB19F4oZDOa8FRTgx4/edit"
-                      target="_blank"
-                    >
-                      <span class="terms-of-service1">Terms of Service</span>
-                    </a>
-                    <span> and </span>
-                    <a
-                      class="privacy-policy"
-                      href="https://docs.google.com/document/d/1xcFk0ZiTVxYaO8fUTpK7SmrZ4GB19F4oZDOa8FRTgx4/edit"
-                      target="_blank"
-                    >
-                      <span class="privacy-policy1">Privacy Policy</span>
-                    </a>
-                  </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoordinatorGPT Login</title>
+  <link rel="stylesheet" href="Assets/styles/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id"
+    content="632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com" />
+</head>
+
+<body>
+  <div class="auth">
+    <div class="rectangle-parent">
+      <div class="frame-child"></div>
+      <b class="coordinatorgpt">CoordinatorGPT</b>
+    </div>
+    <section class="auth-inner">
+      <div class="frame-parent">
+        <div class="frame-wrapper">
+          <div class="the-perfect-to-do-list-for-all-parent">
+            <div class="the-perfect-to-do">
+              The perfect to-do list for all PUSD students, combining Google
+              Classroom and Synergy.
+            </div>
+            <div class="frame-container">
+              <div class="frame-group">
+                <div class="login-with-google-wrapper">
+                  <h3 class="login-with-google">Login with Google</h3>
+                </div>
+                <div class="g-signin2" data-onsuccess="onSignIn" data-scope="https://www.googleapis.com/auth/plus.login"
+                  data-accesstype="offline" data-redirecturi="https://www.example.com/redirect_uri"></div>
+                <div class="by-clicking-continue-container">
+                  <span>By clicking continue, you agree to our </span>
+                  <a class="terms-of-service"
+                    href="https://docs.google.com/document/d/1xcFk0ZiTVxYaO8fUTpK7SmrZ4GB19F4oZDOa8FRTgx4/edit"
+                    target="_blank">
+                    <span class="terms-of-service1">Terms of Service</span>
+                  </a>
+                  <span> and </span>
+                  <a class="privacy-policy"
+                    href="https://docs.google.com/document/d/1xcFk0ZiTVxYaO8fUTpK7SmrZ4GB19F4oZDOa8FRTgx4/edit"
+                    target="_blank">
+                    <span class="privacy-policy1">Privacy Policy</span>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <div class="wrapper-computer">
-            <img
-              class="computer-icon"
-              loading="lazy"
-              alt=""
-              src="Assets/images/computer.svg"
-            />
-          </div>
         </div>
-      </section>
-    </div>
+        <div class="wrapper-computer">
+          <img class="computer-icon" loading="lazy" alt="" src="Assets/images/computer.svg" />
+        </div>
+      </div>
+    </section>
+  </div>
 
-    <script>
-      function onSignIn(googleUser) {
-        const idToken = googleUser.getAuthResponse().id_token;
+  <script>
+    function onSignIn(googleUser) {
+      const idToken = googleUser.getAuthResponse().id_token;
 
-        // Send the ID token to the server for verification
-        fetch("/auth/verifyToken", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ idToken }),
+      // Send the ID token to the server for verification
+      fetch("/auth/verifyToken", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idToken }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Server response:", data);
+          // Redirect to the to-do list page or perform other actions
+          window.location.href = "https://coordinator-gpt.vercel.app/page2"; // Example redirection
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Server response:", data);
-            // Redirect to the to-do list page or perform other actions
-            window.location.href = "/page2.html"; // Example redirection
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-    </script>
-  </body>
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  </script>
+</body>
+
 </html>
