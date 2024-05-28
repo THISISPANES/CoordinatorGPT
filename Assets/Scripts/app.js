@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 
 // Serve page2.html at /page2
 app.get('/page2', (req, res) => {
-    res.sendFile(path.join(__dirname, '../page2.html'));
+    res.sendFile(path.join(__dirname, 'page2.html'));
 });
 
 // Start the server

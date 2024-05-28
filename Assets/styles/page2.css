@@ -76,7 +76,7 @@
   line-height: 150%;
   z-index: 1;
 }
-.frame-parent {
+.frame-parent1 {
   width: 135px;
   flex-direction: column;
   justify-content: flex-start;
@@ -84,13 +84,13 @@
   flex-shrink: 0;
   debug_commit: bf4bc93;
 }
-.frame-parent,
-.frame-wrapper,
+.frame-div,
+.frame-parent1,
 .tasks-parent {
   display: flex;
   align-items: flex-start;
 }
-.frame-wrapper {
+.frame-div {
   flex-direction: row;
   justify-content: flex-end;
   padding: 0 0 0 40px;
@@ -209,7 +209,7 @@
   min-height: 900px;
   max-width: 100%;
 }
-.coordinatorgpt {
+.coordinatorgpt1 {
   position: relative;
   letter-spacing: -0.01em;
   line-height: 150%;
@@ -263,7 +263,7 @@
   height: 100px;
   position: relative;
 }
-.frame-wrapper1 {
+.frame-wrapper2 {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -273,7 +273,7 @@
   box-sizing: border-box;
   max-width: 100%;
   text-align: center;
-  font-family: var(--font-inter);
+  font-family: var(--small-text);
 }
 .duetext {
   align-self: stretch;
@@ -295,7 +295,7 @@
   padding: 0 0 var(--padding-3xl);
   box-sizing: border-box;
 }
-.frame-div,
+.frame-wrapper1,
 .todaytext-parent {
   display: flex;
   flex-direction: row;
@@ -307,7 +307,7 @@
   align-items: flex-end;
   gap: 16px;
 }
-.frame-div {
+.frame-wrapper1 {
   width: 943px;
   align-items: flex-start;
   padding: 0 var(--padding-14xl);
@@ -372,7 +372,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 2px 0 0;
+  padding: var(--padding-11xs) 0 0;
 }
 .task {
   flex: 1;
@@ -383,12 +383,12 @@
   z-index: 1;
 }
 .classname-parent,
-.frame-parent2 {
+.frame-parent4 {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
 }
-.frame-parent2 {
+.frame-parent4 {
   width: 243px;
   flex-direction: row;
   gap: 13px;
@@ -402,11 +402,11 @@
   max-width: 100%;
 }
 .due-date,
-.frame-parent1 {
+.frame-parent3 {
   flex-shrink: 0;
   debug_commit: bf4bc93;
 }
-.frame-parent1 {
+.frame-parent3 {
   width: 813px;
   display: flex;
   flex-direction: row;
@@ -451,7 +451,7 @@
   max-width: 100%;
   margin-top: -1.5px;
 }
-.frame-container,
+.frame-parent2,
 .separator-parent {
   align-self: stretch;
   flex-direction: column;
@@ -463,28 +463,28 @@
   justify-content: flex-start;
   font-size: var(--font-size-13xl);
 }
-.frame-container {
+.frame-parent2 {
   gap: 2.5px;
   font-size: var(--font-size-41xl);
   font-family: var(--font-lexend);
 }
-.frame-container,
-.frame-group,
+.frame-header,
+.frame-parent2,
 .page2,
 .page2-inner {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
 }
-.frame-group {
+.frame-header {
   align-self: stretch;
   flex-direction: column;
-  gap: 50px;
+  gap: var(--gap-31xl);
   max-width: 100%;
   text-align: left;
   font-size: 30px;
   color: var(--color-black);
-  font-family: var(--font-inter);
+  font-family: var(--small-text);
 }
 .page2,
 .page2-inner {
@@ -500,7 +500,7 @@
 .page2 {
   width: 100%;
   position: relative;
-  background-color: #fff;
+  background-color: var(--color-white);
   flex-direction: row;
   padding: 0 32px 0 0;
   gap: 60px;
@@ -517,7 +517,7 @@
   }
   .page2 {
     flex-wrap: wrap;
-    padding: 20px;
+    padding: var(--padding-xl);
     box-sizing: border-box;
   }
 }
@@ -538,8 +538,8 @@
     padding-bottom: 249px;
     box-sizing: border-box;
   }
-  .frame-group {
-    gap: 25px;
+  .frame-header {
+    gap: var(--gap-6xl);
   }
   .page2-inner {
     min-width: 100%;
@@ -563,7 +563,7 @@
     line-height: 29px;
   }
   .classname {
-    font-size: 16px;
+    font-size: var(--small-text-size);
     line-height: 24px;
   }
   .classes-text {
@@ -574,45 +574,7 @@
     gap: 31px;
     min-width: 100%;
   }
-  .frame-parent1 {
-    gap: 20px;
+  .frame-parent3 {
+    gap: var(--gap-xl);
   }
-}
-body {
-  margin: 0;
-  line-height: normal;
-}
-
-:root {
-  /* fonts */
-  --font-lexend: Lexend;
-  --font-inter: Inter;
-
-  /* font sizes */
-  --font-size-21xl: 40px;
-  --font-size-xl: 20px;
-  --font-size-13xl: 32px;
-  --font-size-41xl: 60px;
-  --font-size-lgi: 19px;
-  --font-size-7xl: 26px;
-  --font-size-5xl: 24px;
-
-  /* Colors */
-  --color-gainsboro-100: #d9d9d9;
-  --color-gainsboro-200: rgba(217, 217, 217, 0);
-  --color-silver-100: #c1c1c1;
-  --color-black: #000;
-
-  /* Gaps */
-  --gap-3xs: 10px;
-
-  /* Paddings */
-  --padding-3xl: 22px;
-  --padding-14xl: 33px;
-  --padding-3xs: 10px;
-  --padding-12xs: 1px;
-
-  /* Border radiuses */
-  --br-3xs: 10px;
-  --br-12xs: 1px;
 }
