@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware for body parsing
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'Assets')));
 
 // Session management
 app.use(session({
