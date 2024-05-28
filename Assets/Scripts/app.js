@@ -37,12 +37,12 @@ app.use('/api', apiRouter);
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
+    res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 // Protect the restricted route
-app.get('/page2.html', isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname + '/page2.html'));
+app.get('/page2', (req, res) => {
+    res.sendFile(path.join(__dirname, 'page2.html'));
 });
 
 // Start the server
