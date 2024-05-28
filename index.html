@@ -36,6 +36,29 @@
                     <h3 class="login-with-google">Login with Google</h3>
                   </div>
                   <div class="g-signin2" data-width="400" data-height="40" data-longtitle="true" data-onsuccess="onSignIn"></div>
+                  <script>
+                    function onSignIn(googleUser) {
+                      const idToken = googleUser.getAuthResponse().id_token;
+              
+                      // Send the ID token to the server for verification
+                      fetch("/auth/verifyToken", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ idToken }),
+                      })
+                        .then((response) => response.json())
+                        .then((data) => {
+                          console.log("Server response:", data);
+                          // Redirect to the to-do list page or perform other actions
+                          window.location.href = "/page2"; // Example redirection
+                        })
+                        .catch((error) => {
+                          console.error("Error:", error);
+                        });
+                    }
+                  </script>
                   <div class="by-clicking-continue-container">
                     <span>By clicking continue, you agree to our </span>
                     <a
@@ -69,29 +92,5 @@
         </div>
       </section>
     </div>
-
-    <script>
-      function onSignIn(googleUser) {
-        const idToken = googleUser.getAuthResponse().id_token;
-
-        // Send the ID token to the server for verification
-        fetch("/auth/verifyToken", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ idToken }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Server response:", data);
-            // Redirect to the to-do list page or perform other actions
-            window.location.href = "/page2"; // Example redirection
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-    </script>
   </body>
 </html>
