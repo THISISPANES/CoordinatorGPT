@@ -14,6 +14,45 @@
       name="google-signin-client_id"
       content="632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com"
     />
+    <style>
+      /* Centering and styling the Google sign-in button container */
+      .g-signin2-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50px; /* Adjust the height as needed */
+      }
+
+      .g-signin2 {
+        width: 100% !important; /* Make the button take full width */
+        max-width: 300px; /* Set a maximum width if needed */
+      }
+
+      .login-with-google-wrapper {
+        text-align: center; /* Center the heading */
+        margin-bottom: 10px; /* Adjust the spacing as needed */
+      }
+
+      /* Adjust the styling for the containing divs */
+      .frame-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .auth-inner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full height of the viewport */
+      }
+
+      .rectangle-parent {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <div class="auth">
@@ -34,7 +73,9 @@
                   <div class="login-with-google-wrapper">
                     <h3 class="login-with-google">Login with Google</h3>
                   </div>
-                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                  <div class="g-signin2-container">
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                  </div>
                   <div class="by-clicking-continue-container">
                     <span>By clicking continue, you agree to our </span>
                     <a
