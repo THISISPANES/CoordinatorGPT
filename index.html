@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,105 +15,6 @@
       name="google-signin-client_id"
       content="632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com"
     />
-    <style>
-      /* Basic CSS reset for the page */
-      body, html {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #f0f0f0;
-      }
-
-      .auth {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .rectangle-parent {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      .frame-child {
-        width: 100px;
-        height: 4px;
-        background-color: #000;
-        margin-bottom: 20px;
-      }
-
-      .coordinatorgpt {
-        font-size: 24px;
-        font-weight: 600;
-      }
-
-      .auth-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .frame-parent {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .the-perfect-to-do {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 18px;
-      }
-
-      .frame-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-      }
-
-      .login-with-google-wrapper {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .g-signin2-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-      }
-
-      .by-clicking-continue-container {
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      .terms-of-service,
-      .privacy-policy {
-        color: #0000ff;
-        text-decoration: none;
-      }
-
-      .terms-of-service:hover,
-      .privacy-policy:hover {
-        text-decoration: underline;
-      }
-
-      .wrapper-computer {
-        margin-top: 20px;
-      }
-
-      .computer-icon {
-        width: 100%;
-        max-width: 300px;
-      }
-    </style>
   </head>
   <body>
     <div class="auth">
@@ -133,9 +35,7 @@
                   <div class="login-with-google-wrapper">
                     <h3 class="login-with-google">Login with Google</h3>
                   </div>
-                  <div class="g-signin2-container">
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                  </div>
+                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
                   <div class="by-clicking-continue-container">
                     <span>By clicking continue, you agree to our </span>
                     <a
@@ -195,3 +95,4 @@
     </script>
   </body>
 </html>
+
