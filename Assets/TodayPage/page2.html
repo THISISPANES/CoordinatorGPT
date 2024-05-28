@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="Assets/styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
+    />
+    <script>
+      // Front-end check (not secure, just a supplementary measure)
+      if (!sessionStorage.getItem("user")) {
+        window.location.href = "/";
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="page2">
+      <div class="sidemenu">
+        <div class="sidemenu1"></div>
+        <div class="pfp-parent">
+          <div class="pfp"></div>
+          <div class="username-wrapper">
+            <b class="username">First Name</b>
+          </div>
+        </div>
+        <div class="tasks-parent">
+          <b class="tasks">Tasks</b>
+          <div class="frame-wrapper">
+            <div class="frame-parent">
+              <div class="today-wrapper">
+                <div class="today">Today</div>
+              </div>
+              <div class="upcoming">Upcoming</div>
+            </div>
+          </div>
+        </div>
+        <div class="classes-wrapper">
+          <div class="classes">
+            <div class="listofclasses">
+              <div class="list-class">
+                <img
+                  class="checklist-icon"
+                  alt=""
+                  src="./public/checklist.svg"
+                />
+
+                <div class="classname">AP Computer Science</div>
+              </div>
+              <div class="classes-class">
+                <b class="classes-text">Classes</b>
+                <img
+                  class="dropdown-up-icon"
+                  alt=""
+                  src="./public/dropdown-up.svg"
+                />
+              </div>
+            </div>
+            <img
+              class="dropdown-dropped-icon"
+              loading="lazy"
+              alt=""
+              src="./public/dropdown-dropped.svg"
+            />
+          </div>
+        </div>
+      </div>
+      <section class="page2-inner">
+        <header class="frame-group">
+          <div class="coordinatorgpt-wrapper">
+            <b class="coordinatorgpt">CoordinatorGPT</b>
+          </div>
+          <div class="frame-container">
+            <div class="frame-div">
+              <div class="todaytext-parent">
+                <b class="todaytext">Today</b>
+                <div class="frame-wrapper1">
+                  <div class="numassignments-parent">
+                    <div class="numassignments"></div>
+                    <b class="of-tasks">20</b>
+                  </div>
+                </div>
+                <div class="duetext-wrapper">
+                  <b class="duetext">Time</b>
+                </div>
+              </div>
+            </div>
+            <div class="separator-parent">
+              <div class="separator"></div>
+              <div class="tasks1">
+                <div class="limit"></div>
+                <div class="frame-parent1">
+                  <div class="checkoff-wrapper">
+                    <img
+                      class="checkoff-icon"
+                      alt=""
+                      src="./public/checkoff.svg"
+                    />
+                  </div>
+                  <div class="classname-parent">
+                    <div class="classname1">Assignment #51</div>
+                    <div class="frame-parent2">
+                      <div class="classcolor-wrapper">
+                        <div class="classcolor"></div>
+                      </div>
+                      <div class="task">Honors Pre-Calculus</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="due-date-wrapper">
+                  <div class="due-date">11:59 PM</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </section>
+    </div>
+    <script>
+      function onSignIn(googleUser) {
+        const idToken = googleUser.getAuthResponse().id_token;
+
+        // Send the ID token to the server for verification
+        fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ idToken }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              // Redirect to page2.html
+              window.location.href = "/page2.html";
+            } else {
+              console.error("Login failed:", data.error);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
