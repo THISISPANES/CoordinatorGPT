@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const authRouter = require('./auth');
-const apiRouter = require('./api');
+const authRouter = require('./Assets/Scripts/auth');
+const apiRouter = require('./Assets/Scripts/api');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
