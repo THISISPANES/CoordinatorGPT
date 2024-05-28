@@ -36,9 +36,13 @@ app.use('/api', apiRouter);
 // Serve static files
 app.use(express.static(__dirname));
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'));
+});
+
 // Protect the restricted route
 app.get('/page2.html', isAuthenticated, (req, res) => {
-    res.sendFile(__dirname + '/page2.html');
+    res.sendFile(path.join(__dirname + '/page2.html'));
 });
 
 // Start the server

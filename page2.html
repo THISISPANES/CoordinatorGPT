@@ -123,31 +123,5 @@
         </header>
       </section>
     </div>
-    <script>
-      function onSignIn(googleUser) {
-        const idToken = googleUser.getAuthResponse().id_token;
-
-        // Send the ID token to the server for verification
-        fetch("/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ idToken }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              // Redirect to page2.html
-              window.location.href = "/page2.html";
-            } else {
-              console.error("Login failed:", data.error);
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
-      }
-    </script>
   </body>
 </html>
