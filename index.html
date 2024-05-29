@@ -31,9 +31,10 @@
                 <script>
                   const clientId = '632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com';
                   const redirectUri = 'https://coordinator-gpt.vercel.app/auth/google/callback'; // Ensure this matches the Redirect URI in your Google Cloud Console
-
-                  function onSignIn() {
-                    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=openid%20email%20profile`;
+              
+                  function onSignIn(googleUser) {
+                    const id_token = googleUser.getAuthResponse().id_token;
+                    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=openid%20email%20profile&id_token=${id_token}`;
                     window.location.href = authUrl;
                   }
                 </script>
