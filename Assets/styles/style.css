@@ -1,9 +1,9 @@
-@import url('page2.css');
-
 body {
   margin: 0;
   line-height: normal;
 }
+
+@import url('page2.css');
 
 .frame-child {
   height: 62px;
@@ -263,14 +263,50 @@ body {
 :root {
   /* fonts */
   --small-text: Inter;
+  --font-lexend: Lexend;
 
   /* font sizes */
   --small-text-size: 16px;
+  --font-size-5xl: 24px;
+  --font-size-lgi: 19px;
+  --font-size-xl: 20px;
+  --font-size-21xl: 40px;
+  --font-size-13xl: 32px;
+  --font-size-41xl: 60px;
+  --font-size-7xl: 26px;
 
   /* Colors */
+  --color-white: #fff;
   --color-black: #000;
-  --color-gray: #828282;
+  --color-gray-100: #828282;
+  --color-gainsboro-100: #d9d9d9;
+  --color-gainsboro-200: rgba(217, 217, 217, 0);
+  --color-silver-100: #c1c1c1;
+  --color-lightcoral: #f47777;
+  --color-lightgray-100: #cdcdcd;
+  --color-darkslategray: #2d2d2d;
 
   /* Gaps */
+  --gap-xl: 20px;
   --gap-lg: 18px;
+  --gap-31xl: 50px;
+  --gap-6xl: 25px;
+  --gap-11xs: 2px;
+  --gap-6xs: 7px;
+
+  /* Paddings */
+  --padding-12xs: 1px;
+  --padding-8xs: 5px;
+  --padding-5xs: 8px;
+  --padding-sm: 14px;
+  --padding-11xs: 2px;
+  --padding-xl: 20px;
+  --padding-3xl: 22px;
+  --padding-14xl: 33px;
+  --padding-4xs: 9px;
+  --padding-7xs: 6px;
+
+  /* Border radiuses */
+  --br-8xs: 5px;
+  --br-3xs: 10px;
 }
