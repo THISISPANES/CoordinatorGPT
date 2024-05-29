@@ -14,71 +14,101 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap"
     />
   </head>
-
   <body>
     <div class="page2">
       <div class="sidemenu">
         <div class="sidemenu1"></div>
-        <div class="pfp-parent">
-          <div class="pfp"></div>
+        <div class="pfpcircle-parent">
+          <div class="pfpcircle"></div>
           <div class="username-wrapper">
             <b class="username">First Name</b>
           </div>
         </div>
-        <div class="tasks-parent">
-          <b class="tasks">Tasks</b>
-          <div class="frame-wrapper">
-            <div class="frame-parent">
-              <div class="today-wrapper">
-                <div class="today">Today</div>
+        <div class="frame-parent">
+          <div class="frame-group">
+            <div class="tasks-parent">
+              <b class="tasks">Tasks</b>
+              <div class="calendarvector-wrapper">
+                <img
+                  class="calendarvector-icon"
+                  loading="lazy"
+                  alt=""
+                  src="Assets/images/calendarVector.svg"
+                />
               </div>
+            </div>
+            <div class="todayframe">
+              <div class="highlight"></div>
+              <div class="today">Today</div>
+            </div>
+            <div class="upcomingframe">
+              <div class="highlight1"></div>
               <div class="upcoming">Upcoming</div>
             </div>
           </div>
-        </div>
-        <div class="classes-wrapper">
-          <div class="classes">
-            <div class="listofclasses">
-              <div class="list-class">
+          <div class="frame-container">
+            <div class="classestext-parent">
+              <b class="classestext">Classes</b>
+              <div class="checklistvector-wrapper">
                 <img
-                  class="checklist-icon"
+                  class="checklistvector-icon"
+                  loading="lazy"
                   alt=""
-                  src="./public/checklist.svg"
-                />
-
-                <div class="classname">AP Computer Science</div>
-              </div>
-              <div class="classes-class">
-                <b class="classes-text">Classes</b>
-                <img
-                  class="dropdown-up-icon"
-                  alt=""
-                  src="./public/dropdown-up.svg"
+                  src="/Assets/images/checklistVector.svg"
                 />
               </div>
             </div>
-            <img
-              class="dropdown-dropped-icon"
-              loading="lazy"
-              alt=""
-              src="./public/dropdown-dropped.svg"
-            />
+            <div class="frame-wrapper">
+              <div class="frame-div">
+                <div class="classcolorchild-wrapper">
+                  <div class="classcolorchild"></div>
+                </div>
+                <div class="classname-parent">
+                  <div class="classname">Max 20 Characters</div>
+                  <div class="editvector-wrapper">
+                    <img
+                      class="editvector-icon"
+                      loading="lazy"
+                      alt=""
+                      src="/Assets/images/editVector.svg"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="frame-wrapper1">
+            <div class="frame-parent1">
+              <div class="classcolorchild-container">
+                <div class="classcolorchild1"></div>
+              </div>
+              <div class="classname-group">
+                <div class="classname1">Max 20 Characters</div>
+                <div class="editvector-container">
+                  <img
+                    class="editvector-icon1"
+                    alt=""
+                    src="/Assets/images/editVector.svg"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <section class="page2-inner">
-        <header class="frame-group">
+        <header class="frame-header">
           <div class="coordinatorgpt-wrapper">
             <b class="coordinatorgpt">CoordinatorGPT</b>
           </div>
-          <div class="frame-container">
-            <div class="frame-div">
+          <div class="frame-parent2">
+            <div class="frame-wrapper2">
               <div class="todaytext-parent">
                 <b class="todaytext">Today</b>
-                <div class="frame-wrapper1">
+                <div class="frame-wrapper3">
                   <div class="numassignments-parent">
                     <div class="numassignments"></div>
-                    <b class="of-tasks">20</b>
+                    <b class="numtasks">20</b>
                   </div>
                 </div>
                 <div class="duetext-wrapper">
@@ -86,30 +116,28 @@
                 </div>
               </div>
             </div>
-            <div class="separator-parent">
+            <div class="tasks1">
               <div class="separator"></div>
-              <div class="tasks1">
-                <div class="limit"></div>
-                <div class="frame-parent1">
-                  <div class="checkoff-wrapper">
-                    <img
-                      class="checkoff-icon"
-                      alt=""
-                      src="./public/checkoff.svg"
-                    />
-                  </div>
-                  <div class="classname-parent">
-                    <div class="classname1">Assignment #51</div>
-                    <div class="frame-parent2">
-                      <div class="classcolor-wrapper">
-                        <div class="classcolor"></div>
+              <div class="highlight2"></div>
+              <div class="tasks-inner">
+                <div class="frame-parent3">
+                  <div class="frame-parent4">
+                    <div class="checklistbox-wrapper">
+                      <div class="checklistbox"></div>
+                    </div>
+                    <div class="taskname-parent">
+                      <h2 class="taskname">Assignment #51</h2>
+                      <div class="frame-parent5">
+                        <div class="classcolor-wrapper">
+                          <div class="classcolor"></div>
+                        </div>
+                        <div class="classname2">Honors Pre-Calculus</div>
                       </div>
-                      <div class="task">Honors Pre-Calculus</div>
                     </div>
                   </div>
-                </div>
-                <div class="due-date-wrapper">
-                  <div class="due-date">11:59 PM</div>
+                  <div class="duedate-wrapper">
+                    <div class="duedate">11:59 PM</div>
+                  </div>
                 </div>
               </div>
             </div>
