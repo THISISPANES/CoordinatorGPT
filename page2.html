@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
     <link rel="stylesheet" href="Assets/styles/page2.css" />
     <link
       rel="stylesheet"
@@ -29,12 +28,7 @@
             <div class="tasks-parent">
               <b class="tasks">Tasks</b>
               <div class="calendarvector-wrapper">
-                <img
-                  class="calendarvector-icon"
-                  loading="lazy"
-                  alt=""
-                  src="Assets/images/calendarVector.svg"
-                />
+                <img class="calendarvector-icon" loading="lazy" alt="" src="Assets/images/calendarVector.svg" />
               </div>
             </div>
             <div class="todayframe">
@@ -50,12 +44,7 @@
             <div class="classestext-parent">
               <b class="classestext">Classes</b>
               <div class="checklistvector-wrapper">
-                <img
-                  class="checklistvector-icon"
-                  loading="lazy"
-                  alt=""
-                  src="Assets/images/checklistVector.svg"
-                />
+                <img class="checklistvector-icon" loading="lazy" alt="" src="Assets/images/checklistVector.svg" />
               </div>
             </div>
             <div class="frame-wrapper1">
@@ -66,12 +55,7 @@
                 <div class="classname-parent">
                   <div class="classname">Max 20 Characters</div>
                   <div class="editvector-wrapper">
-                    <img
-                      class="editvector-icon"
-                      loading="lazy"
-                      alt=""
-                      src="Assets/images/editVector.svg"
-                    />
+                    <img class="editvector-icon" loading="lazy" alt="" src="Assets/images/editVector.svg" />
                   </div>
                 </div>
               </div>
@@ -85,11 +69,7 @@
               <div class="classname-group">
                 <div class="classname1">Max 20 Characters</div>
                 <div class="editvector-container">
-                  <img
-                    class="editvector-icon1"
-                    alt=""
-                    src="Assets/images/editVector.svg"
-                  />
+                  <img class="editvector-icon1" alt="" src="Assets/images/editVector.svg" />
                 </div>
               </div>
             </div>
@@ -145,5 +125,27 @@
         </header>
       </section>
     </div>
+    <script>
+      async function fetchClasses() {
+        try {
+          const response = await fetch('/api/classes');
+          const classes = await response.json();
+          updateClassNames(classes);
+        } catch (error) {
+          console.error('Error fetching classes:', error);
+        }
+      }
+
+      function updateClassNames(classes) {
+        const classElements = document.querySelectorAll('.classname, .classname1');
+        classElements.forEach((element, index) => {
+          if (index < classes.length) {
+            element.textContent = classes[index].name.substring(0, 20);
+          }
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', fetchClasses);
+    </script>
   </body>
 </html>
