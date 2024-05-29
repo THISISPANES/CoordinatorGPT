@@ -1,37 +1,48 @@
+// auth.js
 const express = require('express');
 const { OAuth2Client } = require('google-auth-library');
-const bodyParser = require('body-parser');
+const axios = require('axios');
+require('dotenv').config();
 
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
 
-const CLIENT_ID = '632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com'; // Replace with your actual CLIENT_ID
 const client = new OAuth2Client(CLIENT_ID);
-
 
 const authRouter = express.Router();
 
-
-authRouter.use(bodyParser.json());
-
-
-authRouter.post('/verifyToken', async (req, res) => {
-    const { idToken } = req.body;
-
+authRouter.get('/auth/callback', async (req, res) => {
+    const code = req.query.code;
 
     try {
-        const ticket = await client.verifyIdToken({
-            idToken,
-            audience: CLIENT_ID, // Ensure the token is intended for your application
+        const { tokens } = await client.getToken({
+            code,
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+            redirect_uri: REDIRECT_URI,
+            grant_type: 'authorization_code',
         });
+
+        req.session.access_token = tokens.access_token;
+        req.session.refresh_token = tokens.refresh_token;
+
+        const ticket = await client.verifyIdToken({
+            idToken: tokens.id_token,
+            audience: CLIENT_ID,
+        });
+
         const payload = ticket.getPayload();
-        const userId = payload.sub;
-        const email = payload.email;
-        // You can perform further actions here, such as creating a user session
-        res.status(200).send({ userId, email });
+        req.session.user = {
+            id: payload.sub,
+            email: payload.email,
+        };
+
+        res.redirect('/page2');
     } catch (error) {
-        console.error('Error verifying ID token:', error);
-        res.status(401).send('Unauthorized');
+        console.error('Error during authentication:', error);
+        res.status(500).send('Authentication failed');
     }
 });
-
 
 module.exports = authRouter;
