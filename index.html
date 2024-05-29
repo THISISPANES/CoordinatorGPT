@@ -69,7 +69,6 @@
         </div>
       </section>
     </div>
-
     <script>
       function onSignIn(googleUser) {
         const idToken = googleUser.getAuthResponse().id_token;
@@ -86,7 +85,7 @@
           .then((data) => {
             console.log("Server response:", data);
             // Redirect to the to-do list page or perform other actions
-            window.location.href = "/page2"; // Example redirection
+            window.location.href = "https://coordinator-gpt.vercel.app/page2";
           })
           .catch((error) => {
             console.error("Error:", error);
