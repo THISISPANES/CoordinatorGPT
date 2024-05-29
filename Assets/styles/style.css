@@ -3,8 +3,6 @@ body {
   line-height: normal;
 }
 
-@import url('page2.css');
-
 .frame-child {
   height: 62px;
   width: 65px;
