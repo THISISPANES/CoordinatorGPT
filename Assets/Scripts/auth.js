@@ -12,7 +12,7 @@ const client = new OAuth2Client(CLIENT_ID);
 
 const authRouter = express.Router();
 
-authRouter.get('/auth/callback', async (req, res) => {
+authRouter.get('/auth/google/callback', async (req, res) => {
     const code = req.query.code;
 
     try {
