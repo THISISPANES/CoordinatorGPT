@@ -1,6 +1,9 @@
 # Ignore node_modules directory
 node_modules/
 
+# Ignore JSON file containing client credentials
+oauth2.keys.json
+
 # Ignore .env file
 .env
 
