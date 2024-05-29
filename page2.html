@@ -96,30 +96,9 @@
                 </div>
               </div>
             </div>
-            <div class="tasks1">
+            <div class="tasks1" id="tasksList">
               <div class="separator"></div>
               <div class="highlight2"></div>
-              <div class="tasks-inner">
-                <div class="frame-parent6">
-                  <div class="frame-parent7">
-                    <div class="checklistbox-wrapper">
-                      <div class="checklistbox"></div>
-                    </div>
-                    <div class="taskname-parent">
-                      <h2 class="taskname">Assignment #51</h2>
-                      <div class="frame-parent8">
-                        <div class="classcolor-wrapper">
-                          <div class="classcolor"></div>
-                        </div>
-                        <div class="classname2">Honors Pre-Calculus</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="duedate-wrapper">
-                    <div class="duedate">11:59 PM</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </header>
@@ -136,6 +115,16 @@
         }
       }
 
+      async function fetchAssignments() {
+        try {
+          const response = await fetch('/api/assignments');
+          const assignments = await response.json();
+          updateAssignments(assignments);
+        } catch (error) {
+          console.error('Error fetching assignments:', error);
+        }
+      }
+
       function updateClassNames(classes) {
         const classElements = document.querySelectorAll('.classname, .classname1');
         classElements.forEach((element, index) => {
@@ -145,7 +134,50 @@
         });
       }
 
-      document.addEventListener('DOMContentLoaded', fetchClasses);
+      function updateAssignments(assignments) {
+        const tasksList = document.getElementById('tasksList');
+        assignments.forEach(assignment => {
+          const assignmentElement = document.createElement('div');
+          assignmentElement.classList.add('tasks-inner');
+          assignmentElement.innerHTML = `
+            <div class="frame-parent6">
+              <div class="frame-parent7">
+                <div class="checklistbox-wrapper">
+                  <div class="checklistbox"></div>
+                </div>
+                <div class="taskname-parent">
+                  <h2 class="taskname">${assignment.title}</h2>
+                  <div class="frame-parent8">
+                    <div class="classcolor-wrapper">
+                      <div class="classcolor"></div>
+                    </div>
+                    <div class="classname2">${assignment.courseName}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="duedate-wrapper">
+                <div class="duedate">${formatDueDate(assignment.dueDate, assignment.dueTime)}</div>
+              </div>
+            </div>
+          `;
+          tasksList.appendChild(assignmentElement);
+        });
+      }
+
+      function formatDueDate(dueDate, dueTime) {
+        if (dueDate && dueTime) {
+          return `${dueDate.month}/${dueDate.day}/${dueDate.year} ${dueTime.hours}:${dueTime.minutes}`;
+        } else if (dueDate) {
+          return `${dueDate.month}/${dueDate.day}/${dueDate.year}`;
+        } else {
+          return 'No due date';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        fetchClasses();
+        fetchAssignments();
+      });
     </script>
   </body>
 </html>
