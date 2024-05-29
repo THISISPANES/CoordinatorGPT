@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 });
 
 // Serve page2.html at /page2
-app.get('/page2', (req, res) => {
+app.get('/page2', isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, '../../page2.html'));
 });
 
