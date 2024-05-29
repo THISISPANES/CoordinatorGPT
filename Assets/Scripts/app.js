@@ -18,4 +18,25 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-function isAuthenticated(req,
+function isAuthenticated(req, res, next) {
+    if (req.session.access_token) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
+
+app.use('/auth', authRouter);
+app.use('/api', isAuthenticated, apiRouter);
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/page2', isAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, 'page2.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
