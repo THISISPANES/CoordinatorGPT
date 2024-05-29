@@ -2,7 +2,7 @@ const express = require('express');
 const { OAuth2Client } = require('google-auth-library');
 const bodyParser = require('body-parser');
 
-const CLIENT_ID = '632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u'; // Replace with your actual CLIENT_ID
+const CLIENT_ID = '632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com'; // Replace with your actual CLIENT_ID
 const client = new OAuth2Client(CLIENT_ID);
 
 const authRouter = express.Router();
