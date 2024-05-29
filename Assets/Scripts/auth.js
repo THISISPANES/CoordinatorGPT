@@ -1,48 +1,37 @@
 const express = require('express');
 const { OAuth2Client } = require('google-auth-library');
 const bodyParser = require('body-parser');
-const axios = require('axios');
-require('dotenv').config(); // Load environment variables from .env file
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
 
+const CLIENT_ID = '632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com'; // Replace with your actual CLIENT_ID
 const client = new OAuth2Client(CLIENT_ID);
+
 
 const authRouter = express.Router();
 
+
 authRouter.use(bodyParser.json());
 
-authRouter.get('/auth/callback', async (req, res) => {
-    const code = req.query.code;
+
+authRouter.post('/verifyToken', async (req, res) => {
+    const { idToken } = req.body;
+
 
     try {
-        const response = await axios.post('https://oauth2.googleapis.com/token', {
-            code,
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
-            redirect_uri: REDIRECT_URI,
-            grant_type: 'authorization_code',
-        });
-
-        const { id_token } = response.data;
-
         const ticket = await client.verifyIdToken({
-            idToken: id_token,
-            audience: CLIENT_ID,
+            idToken,
+            audience: CLIENT_ID, // Ensure the token is intended for your application
         });
-
         const payload = ticket.getPayload();
         const userId = payload.sub;
         const email = payload.email;
-
-        // Redirect to the frontend page with user data
-        res.redirect(`https://coordinator-gpt.vercel.app/example?userId=${userId}&email=${email}`);
+        // You can perform further actions here, such as creating a user session
+        res.status(200).send({ userId, email });
     } catch (error) {
-        console.error('Error during authentication:', error);
-        res.status(500).send('Authentication failed');
+        console.error('Error verifying ID token:', error);
+        res.status(401).send('Unauthorized');
     }
 });
+
 
 module.exports = authRouter;
