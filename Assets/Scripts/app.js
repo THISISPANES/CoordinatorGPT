@@ -27,6 +27,7 @@ function isAuthenticated(req, res, next) {
 }
 
 app.use('/auth', authRouter);
+
 app.use('/api', isAuthenticated, apiRouter);
 
 app.get('/', (req, res) => {
