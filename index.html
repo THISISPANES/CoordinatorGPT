@@ -29,13 +29,10 @@
                 </div>
                 <div class="g-signin2" data-width="400" data-height="40" data-longtitle="true" data-onsuccess="onSignIn"></div>
                 <script>
-                  const clientId = '632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com';
-                  const redirectUri = 'https://coordinator-gpt.vercel.app/auth/google/callback'; // Ensure this matches the Redirect URI in your Google Cloud Console
-              
                   function onSignIn(googleUser) {
+                    // Send ID token to your server-side route
                     const id_token = googleUser.getAuthResponse().id_token;
-                    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=openid%20email%20profile&id_token=${id_token}`;
-                    window.location.href = authUrl;
+                    window.location.href = `https://coordinator-gpt.vercel.app/auth/google/callback?id_token=${id_token}`;
                   }
                 </script>
                 <div class="by-clicking-continue-container">
