@@ -45,4 +45,26 @@ authRouter.get('/auth/google/callback', async (req, res) => {
     }
 });
 
+authRouter.post('/auth/google/callback', async (req, res) => {
+    const idToken = req.body.id_token;
+  
+    try {
+      const ticket = await client.verifyIdToken({
+        idToken,
+        audience: CLIENT_ID,
+      });
+  
+      const payload = ticket.getPayload();
+      req.session.user = {
+        id: payload.sub,
+        email: payload.email,
+      };
+  
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error during authentication:', error);
+      res.json({ success: false, error: 'Authentication failed' });
+    }
+  });
+
 module.exports = authRouter;
