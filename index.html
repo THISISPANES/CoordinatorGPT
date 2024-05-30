@@ -38,26 +38,9 @@
 
                   function onSignIn(googleUser) {
                     const id_token = googleUser.getAuthResponse().id_token;
-
-                    // Send ID token to your backend for validation
-                    fetch('/auth/google/callback', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify({ id_token })
-                    })
-                      .then(response => response.json())
-                      .then(data => {
-                        if (data.success) {
-                          // If the server responded with success, redirect to your desired page
-                          window.location.href = '/page2';
-                        } else {
-                          // Handle error
-                          console.error('Authentication failed:', data.error);
-                        }
-                      })
-                      .catch(error => console.error('Error:', error));
+                    // TODO: send ID token to your backend for validation
+                    // After validation, you can redirect to your desired page
+                    window.location.href = redirectUri;
                   }
                 </script>
                 <div class="by-clicking-continue-container">
