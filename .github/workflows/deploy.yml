@@ -12,9 +12,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12'
-      - run: npm cache clean --force
-      - run: npm ci
-      - run: cd functions && npm cache clean --force && npm ci
+      - run: npm install
+      - run: cd functions && npm install
       - uses: w9jds/firebase-action@v1.5.0
         with:
           args: deploy --only hosting,functions
