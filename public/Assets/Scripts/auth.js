@@ -1,48 +1,34 @@
-// auth.js
 const express = require('express');
+const router = express.Router();
 const { OAuth2Client } = require('google-auth-library');
-const axios = require('axios');
-require('dotenv').config();
+const client = new OAuth2Client();
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
+async function verify(token) {
+  const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: '632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com',  // Specify the CLIENT_ID of the app that accesses the backend
+  });
+  const payload = ticket.getPayload();
+  const userid = payload['sub'];
+  return payload; // payload contains the user data
+}
 
-const client = new OAuth2Client(CLIENT_ID);
+router.post('/google/callback', async (req, res) => {
+  const token = req.body.id_token;
+  const userData = await verify(token).catch(console.error);
+  // userData contains the user's Google profile information
+  // You can extract specific fields like this:
+  const email = userData.email;
+  const name = userData.name;
+  const pictureUrl = userData.picture;
+  // Now you can use this data in your application
 
-const authRouter = express.Router();
-
-authRouter.post('/auth/google/callback', async (req, res) => {
-    const id_token = req.body.id_token;
-
-    try {
-        const { tokens } = await client.getToken({
-            code,
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
-            redirect_uri: REDIRECT_URI,
-            grant_type: 'authorization_code',
-        });
-
-        req.session.access_token = ticket.getPayload().at_hash;
-        req.session.refresh_token = ticket.getPayload().at_hash;
-
-        const ticket = await client.verifyIdToken({
-            idToken: id_token,
-            audience: CLIENT_ID,
-        });
-
-        const payload = ticket.getPayload();
-        req.session.user = {
-            id: payload.sub,
-            email: payload.email,
-        };
-
-        res.redirect('/page2');
-    } catch (error) {
-        console.error('Error during authentication:', error);
-        res.status(500).send('Authentication failed');
-    }
+  req.session.isAuthenticated = true;
+  req.session.user = {
+    email: email,
+    name: name,
+    pictureUrl: pictureUrl
+  };
 });
 
-module.exports = authRouter;
+module.exports = router;

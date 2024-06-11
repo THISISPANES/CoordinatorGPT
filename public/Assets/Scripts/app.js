@@ -2,8 +2,8 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const authRouter = require('./auth');
 const apiRouter = require('./api');
+const authRoutes = require('./auth.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,10 +12,12 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'Assets')));
 
 app.use(session({
-    secret: 'your_secret_key',
+    secret: '."W90N.{tM$+8k&jf7\J.+vb)T@wu+f3n6]k4=&q',
     resave: false,
     saveUninitialized: true,
-}));
+    cookie: { secure: true } // set to true if you're using https
+  }));
+  
 
 function isAuthenticated(req, res, next) {
     if (req.session.access_token) {
@@ -33,8 +35,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/page2', isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, 'page2.html'));
+app.get('/page2', checkAuth, (req, res) => {
+    const user = req.session.user;
 });
 
 app.listen(PORT, () => {
