@@ -3,6 +3,10 @@ const { google } = require('googleapis');
 
 const apiRouter = express.Router();
 
+apiRouter.get('/user', (req, res) => {
+    res.json(req.session.user);
+});
+
 apiRouter.get('/classes', async (req, res) => {
     const auth = new google.auth.OAuth2(
         process.env.CLIENT_ID,

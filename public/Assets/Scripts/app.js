@@ -39,10 +39,6 @@ app.get('/page2', checkAuth, (req, res) => {
     const user = req.session.user;
 });
 
-apiRouter.get('/user', (req, res) => {
-    res.json(req.session.user);
-});
-
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
