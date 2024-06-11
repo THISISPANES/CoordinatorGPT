@@ -2,17 +2,17 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const apiRouter = require('./api');
+const apiRouter = require('./api.js');
 const authRoutes = require('./auth.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'Assets')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-    secret: '."W90N.{tM$+8k&jf7\J.+vb)T@wu+f3n6]k4=&q',
+    secret: '."W90N.{tM$+8k&jf7J.+vb)T@wu+f3n6]k4=&q',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true } // set to true if you're using https
