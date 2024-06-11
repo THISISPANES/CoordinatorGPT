@@ -7,7 +7,7 @@
   <title>CoordinatorGPT Login</title>
   <link rel="stylesheet" href="Assets/styles/style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta name="google-signin-client_id"
     content="632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com" />
 </head>
@@ -37,10 +37,31 @@
                   const redirectUri = 'https://coordinatorgpt-a7f60.web.app/page2'; // Ensure this matches the Redirect URI in your Google Cloud Console
 
                   function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: ' + profile.getId());
+                    console.log('Name: ' + profile.getName());
+                    console.log('Image URL: ' + profile.getImageUrl());
+                    console.log('Email: ' + profile.getEmail());
                     const id_token = googleUser.getAuthResponse().id_token;
-                    // TODO: send ID token to your backend for validation
-                    // After validation, you can redirect to your desired page
-                    window.location.href = redirectUri;
+
+                    // Send ID token to backend for validation
+                    fetch('/auth/google/callback', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({ id_token })
+                    })
+                      .then(response => response.json())
+                      .then(data => {
+                        if (data.success) {
+                          // If the backend successfully validated the ID token, redirect to page2
+                          window.location.href = redirectUri;
+                        } else {
+                          // Handle error
+                          console.error('Error during authentication:', data.error);
+                        }
+                      });
                   }
                 </script>
                 <div class="by-clicking-continue-container">

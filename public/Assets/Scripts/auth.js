@@ -12,8 +12,8 @@ const client = new OAuth2Client(CLIENT_ID);
 
 const authRouter = express.Router();
 
-authRouter.get('/auth/google/callback', async (req, res) => {
-    const code = req.query.code;
+authRouter.post('/auth/google/callback', async (req, res) => {
+    const id_token = req.body.id_token;
 
     try {
         const { tokens } = await client.getToken({
@@ -24,11 +24,11 @@ authRouter.get('/auth/google/callback', async (req, res) => {
             grant_type: 'authorization_code',
         });
 
-        req.session.access_token = tokens.access_token;
-        req.session.refresh_token = tokens.refresh_token;
+        req.session.access_token = ticket.getPayload().at_hash;
+        req.session.refresh_token = ticket.getPayload().at_hash;
 
         const ticket = await client.verifyIdToken({
-            idToken: tokens.id_token,
+            idToken: id_token,
             audience: CLIENT_ID,
         });
 
