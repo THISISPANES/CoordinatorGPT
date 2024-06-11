@@ -114,6 +114,7 @@
     function updateUserName(user) {
       const usernameElement = document.querySelector('.username');
       usernameElement.textContent = user.name.split(' ')[0]; // Get the first name
+      console.log(user)
     }
 
     async function fetchClasses() {
