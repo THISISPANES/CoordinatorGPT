@@ -37,7 +37,6 @@
                      data-login_uri="https://coordinatorgpt-a7f60.web.app/page2"
                      data-auto_prompt="false">
                 </div>
-
                 <div class="g_id_signin"
                      data-type="standard"
                      data-shape="rectangular"
@@ -70,6 +69,14 @@
       </div>
     </section>
   </div>
+  <script>
+    window.onload = function() {
+      const fragment = new URL(window.location.href).hash;
+      const params = new URLSearchParams(fragment.slice(1));
+      const id_token = params.get('id_token');
+      // Now you can send id_token to your server for validation and to extract user data
+    };
+  </script>
 </body>
 
 </html>
