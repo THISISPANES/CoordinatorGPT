@@ -31,19 +31,12 @@
                   <h3 class="login-with-google">Login with Google</h3>
                 </div>
                 <div id="g_id_onload"
-                     data-client_id="632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com"
-                     data-context="signin"
-                     data-ux_mode="redirect"
-                     data-login_uri="https://coordinatorgpt-a7f60.web.app/page2"
-                     data-auto_prompt="false">
+                  data-client_id="632513860763-fd7ofvc6ul9ucr5sh3ai8uak7c9jqa6u.apps.googleusercontent.com"
+                  data-context="signin" data-ux_mode="redirect"
+                  data-login_uri="https://coordinatorgpt-a7f60.web.app/page2" data-auto_prompt="false">
                 </div>
-                <div class="g_id_signin"
-                     data-type="standard"
-                     data-shape="rectangular"
-                     data-theme="outline"
-                     data-text="signin_with"
-                     data-size="large"
-                     data-logo_alignment="left">
+                <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+                  data-text="signin_with" data-size="large" data-logo_alignment="left">
                 </div>
                 <div class="by-clicking-continue-container">
                   <span>By clicking continue, you agree to our </span>
@@ -70,11 +63,19 @@
     </section>
   </div>
   <script>
-    window.onload = function() {
+    window.onload = function () {
       const fragment = new URL(window.location.href).hash;
       const params = new URLSearchParams(fragment.slice(1));
       const id_token = params.get('id_token');
-      // Now you can send id_token to your server for validation and to extract user data
+
+      // Send the ID token to your server
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id_token: id_token })
+      });
     };
   </script>
 </body>
