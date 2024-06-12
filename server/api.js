@@ -24,8 +24,12 @@ router.get("/assignments", (req, res) => {
 });
 
 // Route to get user data
-router.get("/user", (req, res) => {
-  res.json(req.session.user);
+router.get('/user', (req, res) => {
+  if (req.session.isAuthenticated) {
+    res.json(req.session.user);
+  } else {
+    res.status(401).json({ message: 'Not authenticated' });
+  }
 });
 
 module.exports = router;
